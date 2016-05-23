@@ -5,6 +5,7 @@ module Kwypper
       @post_data = {}
       @headers = {}
       @cookies = {}
+      @query = {}
       @content_length = 0
       yield self if block_given?
     end

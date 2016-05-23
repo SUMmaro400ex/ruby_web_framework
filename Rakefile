@@ -8,3 +8,8 @@ task :default => :spec
 task :console do
 sh "./bin/console"
 end
+
+task :start do
+  require "kwypper"
+  Kwypper.run
+end

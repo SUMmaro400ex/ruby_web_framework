@@ -1,5 +1,8 @@
-require "kwypper/version"
+Dir[File.expand_path('kwypper/*', File.dirname(__FILE__))].each { |file| require file }
 
 module Kwypper
-  # Your code goes here...
+  module_function
+  def run
+    HttpServer.new(9000).serve
+  end
 end

@@ -3,7 +3,7 @@ module Kwypper
   class EmptyRequestError < RuntimeError; end
 
   class HttpParser
-    def parse request_socket
+    def parse(request_socket)
       @first_line = request_socket.gets or raise EmptyRequestError
       Request.new do |r|
         r.http_method = @first_line.split.first
@@ -22,27 +22,25 @@ module Kwypper
     end
 
     def parse_headers(raw_request)
-       lines = []
+      request_headers = {}
 
-       while (line = raw_request.gets) != "\r\n"
-         lines << line.chomp
-       end
+      while (line = raw_request.gets) != "\r\n"
+        key, val = line.split(/:\s/)
+        key = key.to_s.upcase.tr('-', '_')
+        request_headers[key] = val.to_s.chomp
+      end
 
-       lines.each_with_object({}) do |line, request_headers|
-         key, val = line.split(/:\s/)
-         key = key.to_s.upcase.gsub '-', '_'
-         request_headers[key] = val.to_s.chomp
-       end
-     end
+      request_headers
+    end
 
-     def parse_cookies(cookie_value)
-       pairs = cookie_value.to_s.split(/;\s?/)
-       tuples = pairs.map { |c| c.split '=' }
-       Hash[tuples]
-     end
+    def parse_cookies(cookie_value)
+      pairs = cookie_value.to_s.split(/;\s?/)
+      tuples = pairs.map { |c| c.split '=' }
+      Hash[tuples]
+    end
 
-     def read_body raw_request, content_length
-       ::Rack::Utils.parse_nested_query(raw_request.read(content_length))
-     end
+    def read_body(raw_request, content_length)
+      ::Rack::Utils.parse_nested_query(raw_request.read(content_length))
+    end
   end
 end

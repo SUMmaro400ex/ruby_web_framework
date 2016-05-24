@@ -1,3 +1,4 @@
+require 'rack'
 module Kwypper
   class EmptyRequestError < RuntimeError; end
 

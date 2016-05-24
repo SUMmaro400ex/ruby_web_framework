@@ -1,3 +1,4 @@
+require 'socket'
 module Kwypper
   class HttpServer < TCPServer
     def serve

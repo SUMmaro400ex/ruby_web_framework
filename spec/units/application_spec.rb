@@ -3,9 +3,9 @@ require "spec_helper"
 describe Kwypper::Application do
   subject { described_class.new }
   let(:request) do
-    Kwipper::Request.new do |r|
+    Kwypper::Request.new do |r|
       r.path = '/test'
-      r.htp_method = "GET"
+      r.http_method = "GET"
     end
   end
 
@@ -13,15 +13,15 @@ describe Kwypper::Application do
     it "accepts a request and returns a response"
 
     it "calls process!"
-
+  
+    it "sets the response body"
+    
     it "handles not found errors and sets the response status to 404"
 
     it "handles Exception and sets response status to 500"
 
-    it "sets the view and the response body"
-
     it "handles static file requests"
 
-    it "sets the correct mime type for static file requests"
+    it "sets the response content_type for static file requests"
   end
 end

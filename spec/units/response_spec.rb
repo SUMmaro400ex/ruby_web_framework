@@ -2,9 +2,9 @@ require "spec_helper"
 
 describe Kwypper::Response do
   subject do
-    request = Kwipper::Request.new do |r|
+    request = Kwypper::Request.new do |r|
       r.path = '/test'
-      r.htp_method = "GET"
+      r.http_method = "GET"
     end
     described_class.new request
   end

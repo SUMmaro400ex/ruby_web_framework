@@ -2,8 +2,7 @@ require "spec_helper"
 
 describe Kwypper::Controller do
   context ".add_routes" do
-    it "merges the hash argument with the ROUTES constant hash"
-    it "sets the values of the ROUTES hash to an array of the controller class and action name"
+    it "merges the hash argument with the class' routes hash"
   end
 
   context ".layout" do

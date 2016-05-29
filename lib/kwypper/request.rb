@@ -1,21 +1,45 @@
 module Kwypper
   class Request
-    attr_accessor :post_data, :http_method, :path, :headers, :query, :post_data, :cookies, :content_length
+    attr_writer :params, :post_data, :query, :http_method, :path, :headers, :content_length, :cookies
+
     def initialize
-      @post_data = {}
-      @headers = {}
-      @cookies = {}
-      @query = {}
-      @content_length = 0
       yield self if block_given?
     end
 
-    def info
-      http_method + " " + path
+    def query
+      @query ||= {}
+    end
+
+    def post_data
+      @post_data ||= {}
+    end
+
+    def path
+      @path ||= ""
+    end
+
+    def http_method
+      @http_method ||= ""
     end
 
     def params
-      query.merge post_data
+      @params ||= query.merge(post_data)
+    end
+
+    def info
+      @info ||= http_method + " " + path
+    end
+
+    def headers
+      @headers ||= {}
+    end
+
+    def cookies
+      @cookies ||={}
+    end
+
+    def content_length
+      @content_length ||= 0
     end
   end
 end

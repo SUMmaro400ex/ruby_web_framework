@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Based off of [Kwipper](github.com/diegosalazar/kwipper_challenge), Kwypper is a simple web framework designed for Wyncode's Wynmasters program.}
   spec.description   = %q{Based off of [Kwipper](github.com/diegosalazar/kwipper_challenge), Kwypper is a simple web framework designed for Wyncode's Wynmasters program.}
-  spec.homepage      = "github.com/wyncode/kwypper"
+  spec.homepage      = "httpsa://github.com/wyncode/kwypper"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'rack'
+  spec.add_dependency 'mime-types'
   
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "rake", "~> 10.0"
